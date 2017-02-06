@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public dives = [
+  public dives = [];
+  private index = 0;
+
+  private stockDives = [
     {
       site: 'Abu Gotta Ramada',
       location: 'Hurghada, Egypt',
@@ -26,4 +29,18 @@ export class AppComponent {
       time: 62
     }];
 
+  public enableAdd() {
+    return this.index < this.stockDives.length;
+  }
+
+  public addDive() {
+    if (this.enableAdd()) {
+      this.dives.push(this.stockDives[this.index++]);
+    }
+  }
+
+  public clearDives() {
+    this.dives = [];
+    this.index = 0;
+  }
 }
